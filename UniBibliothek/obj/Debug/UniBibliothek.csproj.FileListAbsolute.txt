@@ -1,0 +1,14 @@
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\UniBibliothek.exe.config
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\UniBibliothek.exe
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\UniBibliothek.pdb
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\EntityFramework.dll
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\EntityFramework.SqlServer.dll
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\EntityFramework.xml
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\bin\Debug\EntityFramework.SqlServer.xml
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.csprojResolveAssemblyReference.cache
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.Properties.Resources.resources
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.csproj.GenerateResource.Cache
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.csproj.CoreCompileInputs.cache
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.exe
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.pdb
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.Main.resources
