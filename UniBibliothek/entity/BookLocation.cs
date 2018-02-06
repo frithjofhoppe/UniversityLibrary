@@ -10,6 +10,7 @@ namespace UniBibliothek.entity
     {
         public int BookLocationId { get; set; }
         public String BookLocationPlace { get; set; }
+        public ICollection<BookExemplar> BookExemplars { get; set; }
         public BookLocation() { }
     }
 }

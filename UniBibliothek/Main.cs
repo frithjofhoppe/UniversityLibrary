@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UniBibliothek.entity;
 
 namespace UniBibliothek
 {
@@ -25,11 +26,40 @@ namespace UniBibliothek
         private void abrufeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            BookForm bookForm = new BookForm();
+            bookForm.Show();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using(var con = new LibraryContext())
+            {
+                Member m = new Member()
+                {
+                    MemberFirstname = "Max",
+                    MemberSurname = "Mustermann",
+                    MemberFaculty = "PHBern",
+                    MemberSemester = 2
+                };
+
+                con.Members.Add(m);
+                con.SaveChanges();
+            }
+        }
+
+        private void hinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GenreForm genreForm = new GenreForm();
+            genreForm.Show();
+        }
+
+        private void entfernenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
         }
     }
 }
