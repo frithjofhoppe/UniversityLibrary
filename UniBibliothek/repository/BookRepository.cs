@@ -52,8 +52,7 @@ namespace UniBibliothek.repository
                 BookPagination = book.BookPagination
             };
 
-            context.Books.Add(toSaveBook);
-            context.SaveChanges();
+            //context.SaveChanges();
 
             int id = toSaveBook.BookId;
 
@@ -61,27 +60,20 @@ namespace UniBibliothek.repository
 
             if(toSaveGenre != null)
             {
-                toSaveGenre.Books.Add(context.Books.First(b => b.BookId == id));
+                toSaveBook.Genre.GenreId = toSaveGenre.GenreId;
             }
 
-            //authors.ForEach(a => toSaveBook.Authors.Add(context.Authors.First(ad => ad.AuthorName == a.AuthorName)));
+            authors.ForEach(author => {
+                Author temp = context.Authors.FirstOrDefault(a => a.AuthorName == author.AuthorName);
+                if(temp != null) { toSaveBook.Authors.Add(new Author() { AuthorId = temp.AuthorId }); }
+                else { result = false; }
+            });
 
-            foreach(Author a in authors)
+            if (result)
             {
-                Author temp = context.Authors.FirstOrDefault(ad => ad.AuthorName == a.AuthorName);
-                toSaveBook.Authors.Add(temp);
+                context.Books.Add(toSaveBook);
+                context.SaveChanges();
             }
-
-            context.SaveChanges();
-
-            BookExemplar exemplar = new BookExemplar() {
-                Book = toSaveBook,
-                BookLocation = context.BookLocations.First(loc => loc.BookLocationPlace == location.BookLocationPlace)
-            };
-
-            context.BookExemplars.Add(exemplar);
-
-            context.SaveChanges();
 
             return result;
         }
