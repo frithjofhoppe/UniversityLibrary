@@ -82,8 +82,11 @@ namespace UniBibliothek
                     txtModifyName.Text = search.BookName;
                     //txtModifyEdition.Text = search.BookExemplar.ToString();
                     listBoxGenreModify.SelectedItem = search.Genre.GenreName;
+                    search.Authors.ToList().ForEach(x => listBoxModifyAuthor.SelectedItem = x.AuthorName);
                     txtModifyISBN.Text = search.BookISBN;
                     txtModifyPagination.Text = search.BookPagination.ToString();
+                    txtModifyEdition.Text = search.BookEdition.ToString();
+                    listBoxGenreCreate.SelectedItem = search.Genre.GenreName;
                 }
             }        
         }

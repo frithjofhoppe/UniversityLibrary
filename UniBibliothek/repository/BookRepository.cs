@@ -37,42 +37,55 @@ namespace UniBibliothek.repository
 
         public List<Book> findAllBooks()
         {
-            return context.Books.Include(b => b.Genre).ToList();
+            return context.Books.Include(b => b.Genre).Include(g => g.Genre).ToList();
         }
 
         public bool createBook(Book book,Genre genre, List<Author> authors, BookLocation location)
         {
             bool result = true;
 
-            Book toSaveBook = new Book
-            {
-                BookName = book.BookName,
-                BookISBN = book.BookISBN,
-                BookEdition = book.BookEdition,
-                BookPagination = book.BookPagination
-            };
+            Genre g = context.Genres.FirstOrDefault(x => x.GenreName == genre.GenreName);
 
-            //context.SaveChanges();
+            List<Author> a = new List<Author>();
 
-            int id = toSaveBook.BookId;
-
-            Genre toSaveGenre = context.Genres.FirstOrDefault(g => g.GenreName == genre.GenreName);
-
-            if(toSaveGenre != null)
-            {
-                toSaveBook.Genre.GenreId = toSaveGenre.GenreId;
-            }
-
-            authors.ForEach(author => {
-                Author temp = context.Authors.FirstOrDefault(a => a.AuthorName == author.AuthorName);
-                if(temp != null) { toSaveBook.Authors.Add(new Author() { AuthorId = temp.AuthorId }); }
-                else { result = false; }
+            authors.ForEach(x => {
+                a.Add(context.Authors.FirstOrDefault(y => y.AuthorName == x.AuthorName));
             });
 
-            if (result)
+            //context.Entry(a).State = EntityState.Unchanged;
+
+            Book b = new Book() {
+                BookName = book.BookName,
+                BookEdition = book.BookEdition,
+                BookISBN = book.BookISBN,
+                BookPagination = book.BookPagination,
+                Authors = a,
+                Genre = g
+            };
+
+            context.Books.Add(b);
+            context.SaveChanges();
+
+            int id = b.BookId;
+
+            Book b2 = context.Books.FirstOrDefault(x => x.BookId == id);
+
+            BookLocation bl = context.BookLocations.FirstOrDefault(x => x.BookLocationPlace == location.BookLocationPlace);
+
+            if(b2 != null)
             {
-                context.Books.Add(toSaveBook);
+                BookExemplar be = new BookExemplar()
+                {
+                    Book = b2,
+                    BookLocation = bl
+                };
+
+                context.BookExemplars.Add(be);
                 context.SaveChanges();
+            }
+            else
+            {
+                result = false;
             }
 
             return result;
