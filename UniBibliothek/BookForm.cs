@@ -244,14 +244,18 @@ namespace UniBibliothek
             txtCreateName.Clear();
             txtCretaeISBN.Clear();
             txtCreatePagination.Clear();
-            //comboCreateLocation.Items.Clear();
-            //listBoxCreateAuthor.Items.Clear();
-            //listBoxGenreCreate.Items.Clear();
 
             if (isInputValid)
             {
-                if (!answer) MessageBox.Show("Ein Fehler ist bei der Speicherung aufgeterten", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else loadExemplars();
+                if (!answer)
+                {
+                    MessageBox.Show("Ein Fehler ist bei der Speicherung aufgeterten", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    MessageBox.Show("Das Buch \"" + txtName + "\" wurde erfolgreich erstellt", "Abgeschlossen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadExemplars();
+                }
             }
             else
             {

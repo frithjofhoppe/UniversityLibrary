@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AuthorForm.Designer.cs">
+      <DependentUpon>AuthorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="BookForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,14 @@
     <Compile Include="repository\BookRepository.cs" />
     <Compile Include="repository\GenreRepository.cs" />
     <Compile Include="repository\LocationRepository.cs" />
+    <Compile Include="UniBibliothekDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UniBibliothekDataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AuthorForm.resx">
+      <DependentUpon>AuthorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BookForm.resx">
       <DependentUpon>BookForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +127,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="UniBibliothekDataSet.xsc">
+      <DependentUpon>UniBibliothekDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="UniBibliothekDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UniBibliothekDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="UniBibliothekDataSet.xss">
+      <DependentUpon>UniBibliothekDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

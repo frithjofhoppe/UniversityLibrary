@@ -60,6 +60,8 @@ namespace UniBibliothek
 
         private void entfernenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AuthorForm authorForm = new AuthorForm();
+            authorForm.Show();
         }
     }
 }
