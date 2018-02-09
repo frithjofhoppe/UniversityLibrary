@@ -296,6 +296,7 @@
             this.listBoxBookModify.Name = "listBoxBookModify";
             this.listBoxBookModify.Size = new System.Drawing.Size(213, 147);
             this.listBoxBookModify.TabIndex = 0;
+            this.listBoxBookModify.SelectedIndexChanged += new System.EventHandler(this.listBoxBookModify_SelectedIndexChanged);
             this.listBoxBookModify.SelectedValueChanged += new System.EventHandler(this.listBoxBookModify_SelectedValueChanged);
             // 
             // groupBox2

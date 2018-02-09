@@ -46,11 +46,17 @@ namespace UniBibliothek.repository
                 .ToList();
         }
 
-        public void updateBookExemplarByBookExemplar(BookExemplar bookExemplar)
+        public bool updateBookExemplarByBookExemplar(BookExemplar bookExemplar)
         {
             BookExemplar oExemplar = context.BookExemplars.FirstOrDefault(item => item.BookExemplarId == bookExemplar.BookExemplarId);
+            if (oExemplar == null) return false;
+
             Book oBook = context.Books.FirstOrDefault(item => item.BookId == bookExemplar.Book.BookId);
+            if (oBook == null) return false;
+
             Genre oGenre = context.Genres.FirstOrDefault(item => bookExemplar.Book.Genre.GenreName == item.GenreName);
+            if (oGenre == null) return false;
+
             List<Author> nAuthors = new List<Author>();
 
             bookExemplar.Book.Authors.ToList().ForEach(item => {
@@ -69,6 +75,7 @@ namespace UniBibliothek.repository
             oExemplar.Book = oBook;
 
             context.SaveChanges();
+            return  true;
         }
 
         public bool deleteExemplarAndBookByBookExemplarId(int bookExemplarId)

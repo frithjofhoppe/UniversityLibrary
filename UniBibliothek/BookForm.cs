@@ -93,7 +93,10 @@ namespace UniBibliothek
             
             if(hasChanged && isInputValid)
             {
-                BookExemplarRepository.Instance.updateBookExemplarByBookExemplar(toUpdate);
+                if (BookExemplarRepository.Instance.updateBookExemplarByBookExemplar(toUpdate))
+                {
+                    MessageBox.Show("Das Buch \"" + txtName + "\" wurde erfolgreich geändert", "Geändert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -153,31 +156,42 @@ namespace UniBibliothek
 
         private void listBoxBookModify_SelectedValueChanged(object sender, EventArgs e)
         {
-            String selected = listBoxBookModify.SelectedItem.ToString();
-            if (selected.Length != 0)
+            var selected = listBoxBookModify.SelectedItem;
+            if (selected != null)
             {
-                string[] splitted = selected.Split('-');
-
-                BookExemplar search = exemplars.Find(x => x.BookExemplarId == Int32.Parse(splitted[1]));
-                this.selected = search;
-                if (search != null)
+                if (selected.ToString().Length != 0)
                 {
-                    txtModifyName.Text = search.Book.BookName;
-                    //txtModifyEdition.Text = search.BookExemplar.ToString();
-                    listBoxGenreModify.SelectedItem = search.Book.Genre.GenreName;
-                    listBoxModifyAuthor.ClearSelected();
-                    List<Author> list = search.Book.Authors.ToList();
-                    list.ForEach(x => {
-                        int index = listBoxModifyAuthor.FindString(x.AuthorName);
-                        if(index > -1) listBoxModifyAuthor.SetSelected(index, true);
+                    string[] splitted = selected.ToString().Split('-');
+
+                    BookExemplar search = exemplars.Find(x => x.BookExemplarId == Int32.Parse(splitted[1]));
+                    this.selected = search;
+                    if (search != null)
+                    {
+                        txtModifyName.Text = search.Book.BookName;
+                        //txtModifyEdition.Text = search.BookExemplar.ToString();
+                        listBoxGenreModify.SelectedItem = search.Book.Genre.GenreName;
+                        listBoxModifyAuthor.ClearSelected();
+                        List<Author> list = search.Book.Authors.ToList();
+                        list.ForEach(x =>
+                        {
+                            int index = listBoxModifyAuthor.FindString(x.AuthorName);
+                            if (index > -1) listBoxModifyAuthor.SetSelected(index, true);
                         });
-                    txtModifyISBN.Text = search.Book.BookISBN;
-                    txtModifyPagination.Text = search.Book.BookPagination.ToString();
-                    txtModifyEdition.Text = search.Book.BookEdition.ToString();
-                    txtModifyExemplar.Text = search.BookExemplarId.ToString();
-                    comboModifyLocation.SelectedItem = search.BookLocation.BookLocationPlace;
+                        txtModifyISBN.Text = search.Book.BookISBN;
+                        txtModifyPagination.Text = search.Book.BookPagination.ToString();
+                        txtModifyEdition.Text = search.Book.BookEdition.ToString();
+                        txtModifyExemplar.Text = search.BookExemplarId.ToString();
+                        comboModifyLocation.SelectedItem = search.BookLocation.BookLocationPlace;
+                    }
                 }
-            }        
+            }
+            else
+            {
+                if (listBoxBookModify.Items.Count > 0)
+                {
+                    listBoxBookModify.SelectedIndex = 0;
+                }
+            }
         }
 
         
@@ -305,6 +319,11 @@ namespace UniBibliothek
                 MessageBox.Show("Es wurde kein Buch ausgewählt", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 loadExemplars();
             }
+        }
+
+        private void listBoxBookModify_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

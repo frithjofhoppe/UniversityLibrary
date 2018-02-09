@@ -90,29 +90,48 @@ namespace UniBibliothek
 
         private void listBoxModifyAuthor_SelectedValueChanged(object sender, EventArgs e)
         {
-            Author a = authors.FirstOrDefault(item => item.AuthorName == listBoxModifyAuthor.SelectedItem.ToString());
+            var selectedItem = listBoxModifyAuthor.SelectedItem;
+            if (selectedItem != null) {
+                Author a = this.authors.FirstOrDefault(item => item.AuthorName == selectedItem.ToString());
 
-            if (a != null)
+                if (a != null)
+                {
+                    this.selected = a;
+                    txtModfiyAge.Text = a.AuthorAge.ToString();
+                    txtModifyName.Text = a.AuthorName;
+                }
+            }
+            else
             {
-                this.selected = a;
-                txtModfiyAge.Text = a.AuthorAge.ToString();
-                txtModifyName.Text = a.AuthorName;
+                if(listBoxModifyAuthor.Items.Count > 0)
+                {
+                    listBoxModifyAuthor.SelectedIndex = 0;
+                }
             }
         }
 
         private void btnDeleteEntry_Click(object sender, EventArgs e)
         {
-            DialogResult res = MessageBox.Show("Wollen sie den Autor \"" + selected.AuthorName + "\" wirklich löschen?\n\rAlle zugehörigen Bücher können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (res == DialogResult.Yes)
+            if (selected.Books != null)
             {
-                if (AuthorRepository.Instance.deleteAuthorAndAssociatedBooksByAuhorId(selected.AuthorId))
+                DialogResult res = MessageBox.Show("Wollen sie den Autor \"" + selected.AuthorName + "\" wirklich löschen?\n\rAlle zugehörigen Bücher können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
                 {
-                    MessageBox.Show("Eintrag wurde erolgreich gelöscht", "Abgeschlossen", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadAuthors();
-                }
-                else
-                {
-                    MessageBox.Show("Beim Löschen trat ein Fehler auf", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    DialogResult deleteall = MessageBox.Show("Sollen Bücher bei denen der Autor Couator ist gelöscht werden?", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+                    bool deleteWhereCoautors = false;
+
+                    if (deleteall == DialogResult.Yes) deleteWhereCoautors = true;
+
+                    if (AuthorRepository.Instance.deleteAuthorAndAssociatedBooksByAuhorId(selected.AuthorId, deleteWhereCoautors))
+                    {
+                        MessageBox.Show("Eintrag wurde erolgreich gelöscht", "Abgeschlossen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        loadAuthors();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Beim Löschen trat ein Fehler auf", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
             }
         }

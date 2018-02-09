@@ -49,36 +49,57 @@ namespace UniBibliothek.repository
             return result;
         }
 
-        public bool findIfAuthorisCoauthorById(int id)
-        {
-            return false; //Fortfahren -----------<<<<<<<<<<<<<<<<<<<<<<<<
-        }
-
         public bool deleteAuthorAndAssociatedBooksByAuhorId(int id, bool deleteWhereAuthorisCoauthor)
         {
-            Author author = context.Authors.Find(id);
+            Author author = context.Authors
+                .Include(item => item.Books)
+                .First(item => item.AuthorId == id);
 
-            List<BookExemplar> allBooks = context.BookExemplars
-                .Include(b => b.Book)
-                .Include(a => a.Book.Authors)
-                .Where(a => a.Book.Authors.Contains(author))
-                .ToList();
+            List<Book> bookToDelete = new List<Book>();
+            List<BookExemplar> exemplarToDelete = new List<BookExemplar>();
 
-            if (allBooks != null) return false;
+            author.Books.ToList().ForEach(item => {
+                if (item.Authors.ToList().Count > 1 && deleteWhereAuthorisCoauthor)
+                    bookToDelete.Add(item);
 
-            List<Book> toDelete = new List<Book>();
-
-            allBooks.ForEach(item => {
-                if(item.Book.Authors.ToList().Count > 1 && deleteWhereAuthorisCoauthor)
-                { context.BookExemplars.Remove(item); toDelete.Add(item.Book); }
-
-                if(item.Book.Authors.ToList().Count == 1)
-                { context.BookExemplars.Remove(item); toDelete.Add(item.Book); }
+                if (item.Authors.ToList().Count == 1)
+                    bookToDelete.Add(item);
             });
+
+            bookToDelete.ForEach(item => {
+                BookExemplar be = context.BookExemplars
+                .Include(b => b.Book)
+                .First(b => b.Book.BookId == item.BookId);
+                exemplarToDelete.Add(be);
+            });
+
+            exemplarToDelete.ForEach(item => context.BookExemplars.Remove(item));
+            context.SaveChanges();
+            bookToDelete.ForEach(item => context.Books.Remove(item));
             context.SaveChanges();
 
-            toDelete.ForEach(item => context.Books.Remove(item));
-            context.SaveChanges();
+            //List<BookExemplar> allBooks = context.BookExemplars
+            //    .Include(b => b.Book)
+            //    .Include(a => a.Book.Authors)
+            //    .Where(a => a.Book.Authors.)
+            //    .ToList();
+
+            //if (allBooks != null) return false;
+
+            //List<Book> toDelete = new List<Book>();
+
+            //allBooks.ForEach(item =>
+            //{
+            //    if (item.Book.Authors.ToList().Count > 1 && deleteWhereAuthorisCoauthor)
+            //    { context.BookExemplars.Remove(item); toDelete.Add(item.Book); }
+
+            //    if (item.Book.Authors.ToList().Count == 1)
+            //    { context.BookExemplars.Remove(item); toDelete.Add(item.Book); }
+            //});
+            //context.SaveChanges();
+
+            //toDelete.ForEach(item => context.Books.Remove(item));
+            //context.SaveChanges();
 
             context.Authors.Remove(author);
             context.SaveChanges();

@@ -30,14 +30,17 @@ namespace UniBibliothek
 
         private void btnGenreSuchen_Click(object sender, EventArgs e)
         {
-            String selected = listBoxGenres.SelectedItem.ToString();
-            if (selected.Length > 0)
+            var selected = listBoxGenres.SelectedItem;
+            if (selected != null)
             {
-                listBokksAfterGenres.Items.Clear();
-                BookRepository.Instance.findBooksByGenre(new entity.Genre() { GenreName = selected }).ForEach(book =>
+                if (selected.ToString().Length > 0)
                 {
-                    listBokksAfterGenres.Items.Add(book.BookName);
-                });
+                    listBokksAfterGenres.Items.Clear();
+                    BookRepository.Instance.findBooksByGenre(new entity.Genre() { GenreName = selected.ToString() }).ForEach(book =>
+                    {
+                        listBokksAfterGenres.Items.Add(book.BookName);
+                    });
+                }
             }
         }
 
