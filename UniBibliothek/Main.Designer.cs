@@ -62,21 +62,21 @@
             // hinzufügenToolStripMenuItem
             // 
             this.hinzufügenToolStripMenuItem.Name = "hinzufügenToolStripMenuItem";
-            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.hinzufügenToolStripMenuItem.Text = "Genre";
             this.hinzufügenToolStripMenuItem.Click += new System.EventHandler(this.hinzufügenToolStripMenuItem_Click);
             // 
             // entfernenToolStripMenuItem
             // 
             this.entfernenToolStripMenuItem.Name = "entfernenToolStripMenuItem";
-            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.entfernenToolStripMenuItem.Text = "Autor";
             this.entfernenToolStripMenuItem.Click += new System.EventHandler(this.entfernenToolStripMenuItem_Click);
             // 
             // abrufeToolStripMenuItem
             // 
             this.abrufeToolStripMenuItem.Name = "abrufeToolStripMenuItem";
-            this.abrufeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrufeToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.abrufeToolStripMenuItem.Text = "Buch";
             this.abrufeToolStripMenuItem.Click += new System.EventHandler(this.abrufeToolStripMenuItem_Click);
             // 
@@ -86,8 +86,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(613, 350);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";

@@ -14,9 +14,16 @@ namespace UniBibliothek
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Main());
+            }catch(Exception ex)
+            {
+                MessageBox.Show("Es ist ein unbehandelteter Fehler aufgetreten\nStarten sie dei Applikation neu", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                Environment.Exit(0);
+            }
         }
     }
 }

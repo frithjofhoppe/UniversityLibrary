@@ -37,7 +37,7 @@ namespace UniBibliothek.repository
 
         public List<Book> findAllBooks()
         {
-            return context.Books.Include(b => b.Genre).Include(a=> a.Au).ToList();
+            return context.Books.Include(b => b.Genre).Include(a=> a.Authors).ToList();
         }
 
         public bool createBook(Book book,Genre genre, List<Author> authors, BookLocation location)
@@ -74,7 +74,7 @@ namespace UniBibliothek.repository
 
             if(b2 != null)
             {
-                BookExemplarRepository be = new BookExemplarRepository()
+                BookExemplar be = new BookExemplar()
                 {
                     Book = b2,
                     BookLocation = bl

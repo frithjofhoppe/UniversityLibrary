@@ -31,12 +31,12 @@
             this.listBoxGenres = new System.Windows.Forms.ListBox();
             this.btnGenreSuchen = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBokksAfterGenres = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtGenreToCreate = new System.Windows.Forms.TextBox();
             this.createGenre = new System.Windows.Forms.Button();
-            this.listBokksAfterGenres = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +72,15 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Abrufen";
+            // 
+            // listBokksAfterGenres
+            // 
+            this.listBokksAfterGenres.FormattingEnabled = true;
+            this.listBokksAfterGenres.Location = new System.Drawing.Point(213, 32);
+            this.listBokksAfterGenres.Name = "listBokksAfterGenres";
+            this.listBokksAfterGenres.Size = new System.Drawing.Size(301, 173);
+            this.listBokksAfterGenres.TabIndex = 5;
+            this.listBokksAfterGenres.SelectedIndexChanged += new System.EventHandler(this.listBokksAfterGenres_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -119,15 +128,6 @@
             this.createGenre.UseVisualStyleBackColor = true;
             this.createGenre.Click += new System.EventHandler(this.button1_Click);
             // 
-            // listBokksAfterGenres
-            // 
-            this.listBokksAfterGenres.FormattingEnabled = true;
-            this.listBokksAfterGenres.Location = new System.Drawing.Point(213, 32);
-            this.listBokksAfterGenres.Name = "listBokksAfterGenres";
-            this.listBokksAfterGenres.Size = new System.Drawing.Size(301, 173);
-            this.listBokksAfterGenres.TabIndex = 5;
-            this.listBokksAfterGenres.SelectedIndexChanged += new System.EventHandler(this.listBokksAfterGenres_SelectedIndexChanged);
-            // 
             // GenreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +135,7 @@
             this.ClientSize = new System.Drawing.Size(541, 359);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "GenreForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Genre - Verwaltung";
