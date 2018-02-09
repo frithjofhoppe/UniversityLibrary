@@ -43,6 +43,7 @@ namespace UniBibliothek
         {
             books = BookRepository.Instance.findAllBooks();
             books.ForEach(b => listBoxBookModify.Items.Add(b.BookName));
+            listBoxBookModify.Items.Clear();
         }
 
         public void loadLocations()
@@ -82,14 +83,21 @@ namespace UniBibliothek
                     txtModifyName.Text = search.BookName;
                     //txtModifyEdition.Text = search.BookExemplar.ToString();
                     listBoxGenreModify.SelectedItem = search.Genre.GenreName;
-                    search.Authors.ToList().ForEach(x => listBoxModifyAuthor.SelectedItem = x.AuthorName);
+                    List<Author> list = search.Authors.ToList();
+                    list.ForEach(x => {
+                        int index = listBoxModifyAuthor.FindString(x.AuthorName);
+                        if(index > -1) listBoxModifyAuthor.SetSelected(index, true);
+                        });
                     txtModifyISBN.Text = search.BookISBN;
                     txtModifyPagination.Text = search.BookPagination.ToString();
                     txtModifyEdition.Text = search.BookEdition.ToString();
-                    listBoxGenreCreate.SelectedItem = search.Genre.GenreName;
+                    listBoxGenreModify.SelectedItem = search.Genre.GenreName;
+                    comboModifyLocation.SelectedItem = search.Loc
                 }
             }        
         }
+
+        
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -139,6 +147,8 @@ namespace UniBibliothek
                    }
                    );
             }
+
+
 
             if (!answer) MessageBox.Show("Fehler is aufgeteten", "Fehler");
         }
