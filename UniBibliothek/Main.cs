@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UniBibliothek.entity;
+using System.Collections.Generic;
 
 namespace UniBibliothek
 {
@@ -62,6 +63,12 @@ namespace UniBibliothek
         {
             AuthorForm authorForm = new AuthorForm();
             authorForm.Show();
+        }
+
+        private void mitgliedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MemberForm memberForm = new MemberForm();
+
         }
     }
 }

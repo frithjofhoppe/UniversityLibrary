@@ -140,5 +140,10 @@ namespace UniBibliothek
         {
 
         }
+
+        private void btnModifyEntry_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

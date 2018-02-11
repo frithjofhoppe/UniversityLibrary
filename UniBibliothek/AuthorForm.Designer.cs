@@ -80,6 +80,7 @@
             this.btnModifyEntry.TabIndex = 27;
             this.btnModifyEntry.Text = "Bearbeiten";
             this.btnModifyEntry.UseVisualStyleBackColor = true;
+            this.btnModifyEntry.Click += new System.EventHandler(this.btnModifyEntry_Click);
             // 
             // btnDeleteEntry
             // 
