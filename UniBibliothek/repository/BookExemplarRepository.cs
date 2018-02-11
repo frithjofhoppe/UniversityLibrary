@@ -82,6 +82,7 @@ namespace UniBibliothek.repository
 
         public bool deleteExemplarAndBookByBookExemplarId(int bookExemplarId)
         { 
+
             BookExemplar exemplar = context.BookExemplars.Include(b => b.Book).First(item => item.BookExemplarId == bookExemplarId);
             if (exemplar == null) return false;
 
