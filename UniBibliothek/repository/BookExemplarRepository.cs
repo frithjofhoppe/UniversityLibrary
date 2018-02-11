@@ -48,15 +48,10 @@ namespace UniBibliothek.repository
 
         public bool updateBookExemplarByBookExemplar(BookExemplar bookExemplar)
         {
+            context.SaveChanges();
             BookExemplar oExemplar = context.BookExemplars.FirstOrDefault(item => item.BookExemplarId == bookExemplar.BookExemplarId);
             if (oExemplar == null) return false;
-
-            Book oBook = context.Books.FirstOrDefault(item => item.BookId == bookExemplar.Book.BookId);
-            if (oBook == null) return false;
-
-            Genre oGenre = context.Genres.FirstOrDefault(item => bookExemplar.Book.Genre.GenreName == item.GenreName);
-            if (oGenre == null) return false;
-
+            context.SaveChanges();
             List<Author> nAuthors = new List<Author>();
 
             bookExemplar.Book.Authors.ToList().ForEach(item => {
@@ -64,17 +59,24 @@ namespace UniBibliothek.repository
                 if(a != null) nAuthors.Add(a);
             });
 
+            oExemplar.BookLocation = context.BookLocations.FirstOrDefault(item => item.BookLocationPlace == bookExemplar.BookLocation.BookLocationPlace);
+
+            context.SaveChanges();
+
+            Genre oGenre = context.Genres.FirstOrDefault(item => bookExemplar.Book.Genre.GenreName == item.GenreName);
+            if (oGenre == null) return false;
+
+            Book oBook = context.Books.FirstOrDefault(item => item.BookId == bookExemplar.Book.BookId);
+            if (oBook == null) return false;
+
             oBook.BookEdition = bookExemplar.Book.BookEdition;
             oBook.BookISBN = bookExemplar.Book.BookISBN;
             oBook.BookPagination = bookExemplar.Book.BookPagination;
             oBook.BookName = bookExemplar.Book.BookName;
             oBook.Authors = nAuthors;
             oBook.Genre = oGenre;
-
-            oExemplar.BookLocation = context.BookLocations.FirstOrDefault(item => item.BookLocationPlace == bookExemplar.BookLocation.BookLocationPlace);
-            oExemplar.Book = oBook;
-
             context.SaveChanges();
+
             return  true;
         }
 

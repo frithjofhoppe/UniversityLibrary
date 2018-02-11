@@ -135,5 +135,10 @@ namespace UniBibliothek
                 }
             }
         }
+
+        private void listBoxModifyAuthor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

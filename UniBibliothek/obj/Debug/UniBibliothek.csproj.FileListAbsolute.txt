@@ -31,3 +31,4 @@ C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBib
 E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.BookForm.resources
 E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.GenreForm.resources
 C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.AuthorForm.resources
+E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.AuthorForm.resources

@@ -79,9 +79,15 @@ namespace UniBibliothek
                 });
                 });
 
-            BookExemplar toUpdate = selected;
+            BookExemplar toUpdate = new BookExemplar();
+            toUpdate.Book = new Book();
+            toUpdate.Book.Genre = new Genre();
+            toUpdate.Book.Authors = new List<Author>();
+            toUpdate.BookLocation = new BookLocation();
 
+            toUpdate.BookExemplarId = selected.BookExemplarId;
             toUpdate.Book.BookEdition = edition;
+            toUpdate.Book.BookId = selected.Book.BookId;
             toUpdate.Book.BookISBN = txtISBN;
             toUpdate.BookLocation.BookLocationPlace = txtLocation;
             toUpdate.Book.Genre.GenreName = txtGenre;
@@ -96,6 +102,8 @@ namespace UniBibliothek
                 if (BookExemplarRepository.Instance.updateBookExemplarByBookExemplar(toUpdate))
                 {
                     MessageBox.Show("Das Buch \"" + txtName + "\" wurde erfolgreich geändert", "Geändert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadExemplars();
+
                 }
             }
         }
@@ -168,7 +176,6 @@ namespace UniBibliothek
                     if (search != null)
                     {
                         txtModifyName.Text = search.Book.BookName;
-                        //txtModifyEdition.Text = search.BookExemplar.ToString();
                         listBoxGenreModify.SelectedItem = search.Book.Genre.GenreName;
                         listBoxModifyAuthor.ClearSelected();
                         List<Author> list = search.Book.Authors.ToList();
