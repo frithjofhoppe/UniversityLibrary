@@ -64,6 +64,7 @@
             this.listBoxMembers.Name = "listBoxMembers";
             this.listBoxMembers.Size = new System.Drawing.Size(248, 199);
             this.listBoxMembers.TabIndex = 1;
+            this.listBoxMembers.SelectedValueChanged += new System.EventHandler(this.listBoxMembers_SelectedValueChanged);
             // 
             // label2
             // 

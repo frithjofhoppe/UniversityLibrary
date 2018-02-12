@@ -36,6 +36,28 @@ namespace UniBibliothek.repository
 
         public bool createLendingByLending(Lending lending)
         {
+            Lending existing = context.Lendings
+                .Include(be => be.BookExemplar)
+                .FirstOrDefault(item => item.BookExemplar.BookExemplarId == lending.BookExemplar.BookExemplarId);
+            if (existing != null) return false;
+
+            BookExemplar bookExemplar = context.BookExemplars.FirstOrDefault(item => item.BookExemplarId == lending.BookExemplar.BookExemplarId);
+            if (bookExemplar == null) return false;
+
+            Member member = context.Members.FirstOrDefault(item => item.MemberId == lending.Member.MemberId);
+            if (member == null) return false;
+
+            Lending toSave = new Lending()
+            {
+                BookExemplar = bookExemplar,
+                LendingDate = lending.LendingDate,
+                LendingReturn = lending.LendingReturn,
+                Member = member
+            };
+
+            context.Lendings.Add(toSave);
+            context.SaveChanges();
+
             return true;
         }
     }

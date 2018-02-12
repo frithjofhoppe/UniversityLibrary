@@ -16,7 +16,7 @@ namespace UniBibliothek
     {
         private List<BookExemplar> exemplars = new List<BookExemplar>();
         private List<Member> members = new List<Member>();
-        private Member selected = new Member();
+        private Member member = new Member();
         private BookExemplar bookExemplar = new BookExemplar();
         
         public LendindCreation()
@@ -99,6 +99,8 @@ namespace UniBibliothek
 
             if (listBoxExemplars.SelectedItems.Count != 1) isValid = false;
             if (listBoxMembers.SelectedItems.Count != 1) isValid = false;
+            if (this.member.MemberId == 0) isValid = false;
+            if (this.bookExemplar.BookExemplarId == 0) isValid = false;
 
             if (isValid)
             {
@@ -106,13 +108,35 @@ namespace UniBibliothek
                 {
                     LendingDate = from,
                     LendingReturn = to,
-                    Member = 
+                    Member = new Member()
+                    {
+                        MemberFaculty = member.MemberFaculty,
+                        MemberFirstname = member.MemberFirstname,
+                        MemberId = member.MemberId,
+                        MemberSemester = member.MemberSemester,
+                        MemberSurname = member.MemberSurname
+                    },
+                    BookExemplar = new BookExemplar()
+                    {
+                        BookExemplarId = this.bookExemplar.BookExemplarId,
+                    }
                 };
 
                 if (LendingRepository.Instance.createLendingByLending(lending))
                 {
-
+                    MessageBox.Show("Folgene Daten wurden erfasse\n\rBuch: " 
+                        + this.bookExemplar.Book.BookName + "\n\rExemplar: " 
+                        + this.bookExemplar.BookExemplarId.ToString() + "\n\rMitglied: "
+                        + this.member.MemberFirstname + " " + this.member.MemberSurname
+                        , "Abgeschlosen", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessageBox.Show("Beim Vorgang trat ein Fehler auf", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                loadBookExemplar();
+                loadMember();
             }
         }
 
@@ -122,12 +146,26 @@ namespace UniBibliothek
             if(content != null)
             {
                 string[] contentArray = content.ToString().Split('-');
-                BookExemplar toLend = exemplars.Find(item => item.BookExemplarId == Int32.Parse(contentArray[1]));
-
+                this.bookExemplar = exemplars.Find(item => item.BookExemplarId == Int32.Parse(contentArray[1]));
             }
             else if(listBoxExemplars.Items.Count > 1)
             {
                 listBoxExemplars.SelectedIndex = 0;
+            }
+        }
+
+        private void listBoxMembers_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var content = listBoxMembers.SelectedItem;
+            if (content != null)
+            {
+                string[] contentArray = content.ToString().Split('/');
+                this.member = members
+                    .Find(item => item.MemberFirstname == contentArray[0] && item.MemberSurname == contentArray[1]);
+            }
+            else if (listBoxMembers.Items.Count > 1)
+            {
+                listBoxMembers.SelectedIndex = 0;
             }
         }
     }
