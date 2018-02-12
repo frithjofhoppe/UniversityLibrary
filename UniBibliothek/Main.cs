@@ -126,5 +126,22 @@ namespace UniBibliothek
                 bw.RunWorkerAsync();
             }
         }
+
+        private void standortToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LocationView locationView = new LocationView();
+            locationView.Show();
+        }
+
+        private void infoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CreditsForm creditsForm = new CreditsForm();
+            creditsForm.Show();
+        }
+
+        private void copyrightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

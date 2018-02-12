@@ -28,5 +28,44 @@ namespace UniBibliothek.repository
         {
             return context.BookLocations.ToList();
         }
+
+        public bool updateLocationByLocation(BookLocation location)
+        {
+            BookLocation existing = context.BookLocations.FirstOrDefault(item => item.BookLocationId == location.BookLocationId);
+            if (existing == null) return false;
+
+            BookLocation modified = context.BookLocations.FirstOrDefault(item => item.BookLocationPlace.ToUpper() == location.BookLocationPlace.ToUpper());
+            if (modified != null) return false;
+
+            existing.BookLocationPlace = location.BookLocationPlace;
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public bool deleteLocationByLocationId(int id)
+        {
+            BookLocation existing = context.BookLocations.FirstOrDefault(item => item.BookLocationId == id);
+            if (existing == null) return false;
+            context.BookLocations.Remove(existing);
+            context.SaveChanges();
+            return true;
+        }
+
+        public bool createLocationByLocation(BookLocation bookLocation)
+        {
+            BookLocation existing = context.BookLocations.FirstOrDefault(item => item.BookLocationPlace.ToUpper() == bookLocation.BookLocationPlace.ToUpper());
+            if (existing != null) return false;
+
+            BookLocation toSave = new BookLocation()
+            {
+                BookLocationPlace = bookLocation.BookLocationPlace
+            };
+
+            context.BookLocations.Add(toSave);
+            context.SaveChanges();
+
+            return true;
+        }
     }
 }

@@ -37,3 +37,5 @@ C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBib
 C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.LendindCreation.resources
 C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.LendingModify.resources
 C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.DbCreateForm.resources
+C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.LocationView.resources
+C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.CreditsForm.resources

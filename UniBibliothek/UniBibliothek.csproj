@@ -64,6 +64,12 @@
     <Compile Include="BookForm.Designer.cs">
       <DependentUpon>BookForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreditsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreditsForm.Designer.cs">
+      <DependentUpon>CreditsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DbCreateForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     </Compile>
     <Compile Include="LendingModify.Designer.cs">
       <DependentUpon>LendingModify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LocationView.Designer.cs">
+      <DependentUpon>LocationView.cs</DependentUpon>
     </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -128,6 +140,9 @@
     <EmbeddedResource Include="BookForm.resx">
       <DependentUpon>BookForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CreditsForm.resx">
+      <DependentUpon>CreditsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DbCreateForm.resx">
       <DependentUpon>DbCreateForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +154,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LendingModify.resx">
       <DependentUpon>LendingModify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocationView.resx">
+      <DependentUpon>LocationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

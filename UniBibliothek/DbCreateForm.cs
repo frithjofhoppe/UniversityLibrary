@@ -33,7 +33,7 @@ namespace UniBibliothek
             for (int i = 0; i < 100; i++)
             {
                 progressBar1.Value = i;
-                Thread.Sleep(10);
+                Thread.Sleep(5);
             }
         }
     }
