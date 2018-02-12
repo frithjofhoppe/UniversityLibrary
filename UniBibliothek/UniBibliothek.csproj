@@ -78,6 +78,12 @@
     <Compile Include="GenreForm.Designer.cs">
       <DependentUpon>GenreForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LendindCreation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LendindCreation.Designer.cs">
+      <DependentUpon>LendindCreation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,7 @@
     <Compile Include="repository\BookExemplarRepository.cs" />
     <Compile Include="repository\BookRepository.cs" />
     <Compile Include="repository\GenreRepository.cs" />
+    <Compile Include="repository\LendingRepository.cs" />
     <Compile Include="repository\LocationRepository.cs" />
     <Compile Include="repository\MemberRepository.cs" />
     <Compile Include="UniBibliothekDataSet.Designer.cs">
@@ -111,6 +118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenreForm.resx">
       <DependentUpon>GenreForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LendindCreation.resx">
+      <DependentUpon>LendindCreation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

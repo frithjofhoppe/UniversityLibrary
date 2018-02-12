@@ -97,5 +97,14 @@ namespace UniBibliothek.repository
 
             return true;
         }
+
+        public List<BookExemplar> findAllBookExemplars()
+        {
+            return context.BookExemplars
+                .Include(b => b.Book)
+                .Include(bl => bl.BookLocation)
+                .Include(l => l.Lending)
+                .ToList();
+        }
     }
 }

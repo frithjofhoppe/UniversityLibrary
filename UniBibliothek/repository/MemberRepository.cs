@@ -61,6 +61,13 @@ namespace UniBibliothek.repository
 
         public bool deleteMemberById(int id)
         {
+            Member m = context.Members.FirstOrDefault(item => item.MemberId == id);
+
+            if (m == null) return false;
+
+            context.Members.Remove(m);
+            context.SaveChanges();
+
             return true;
         }
     }

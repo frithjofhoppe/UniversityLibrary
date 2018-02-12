@@ -59,7 +59,22 @@ namespace UniBibliothek
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            if (selected.MemberId != 0)
+            {
+                DialogResult res = MessageBox.Show("Wollen sie das Mitglied \"" + selected.MemberFirstname + " " + selected.MemberSurname + "\" wirklich löschen?\n\rDie Daten können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
+                {
+                    if(MemberRepository.Instance.deleteMemberById(selected.MemberId))
+                    {
+                        MessageBox.Show("Eintrag wurde erolgreich gelöscht", "Abgeschlossen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Beim Löschen trat ein Fehler auf", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    loadMember();
+                }
+            }
         }
 
         private void btnCreate_Click(object sender, EventArgs e)
@@ -121,22 +136,22 @@ namespace UniBibliothek
 
             try
             {
-                firstname = txtCreateFirstname.Text.Trim();
-                lastname = txtCreateLastname.Text.Trim();
-                faculty = txtCreateFaculty.Text.Trim();
-                Int32.TryParse(txtCreateSemester.Text.Trim(), out semester);
+                firstname = txtModifyFirstname.Text.Trim();
+                lastname = txtModifyLastname.Text.Trim();
+                faculty = txtModifyFaculty.Text.Trim();
+                Int32.TryParse(txtModifySemester.Text.Trim(), out semester);
             }
             catch (Exception ex) { }
 
             if (firstname.Length < 2) isValid = false;
             if (lastname.Length < 2) isValid = false;
             if (faculty.Length < 4) isValid = false;
-            if (semester < 0 && semester > 10) isValid = false;
+            if (semester < 0 || semester > 10) isValid = false;
 
             if (firstname != selected.MemberFirstname) hasChanged = true;
-            if (lastname != selected.MemberSurname) hasChanged = false;
-            if (faculty != selected.MemberFaculty) hasChanged = false;
-            if (semester != selected.MemberSemester) hasChanged = false;
+            if (lastname != selected.MemberSurname) hasChanged = true;
+            if (faculty != selected.MemberFaculty) hasChanged = true;
+            if (semester != selected.MemberSemester) hasChanged = true;
 
             if (hasChanged)
             {
@@ -147,7 +162,8 @@ namespace UniBibliothek
                         MemberId = selected.MemberId,
                         MemberSurname = lastname,
                         MemberFirstname = firstname,
-                        MemberSemester = semester
+                        MemberSemester = semester,
+                        MemberFaculty = faculty
                     };
 
                     if (MemberRepository.Instance.updateMemberByMember(m))

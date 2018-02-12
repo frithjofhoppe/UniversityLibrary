@@ -68,7 +68,23 @@ namespace UniBibliothek
         private void mitgliedToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MemberForm memberForm = new MemberForm();
+            memberForm.Show();
+        }
 
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void abfragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bearbeitenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            LendindCreation lendingModifying = new LendindCreation();
+            lendingModifying.Show();
         }
     }
 }

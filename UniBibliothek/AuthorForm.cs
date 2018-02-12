@@ -76,7 +76,7 @@ namespace UniBibliothek
                 }
                 else
                 {
-                    MessageBox.Show("Author \"" + author + "\" exisitert bereits", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Author \"" + author.ToUpperInvariant() + "\" exisitert bereits", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }    
             }
             else
@@ -112,7 +112,7 @@ namespace UniBibliothek
 
         private void btnDeleteEntry_Click(object sender, EventArgs e)
         {
-            if (selected.Books != null)
+            if (selected != null && selected.AuthorId > 0)
             {
                 DialogResult res = MessageBox.Show("Wollen sie den Autor \"" + selected.AuthorName + "\" wirklich löschen?\n\rAlle zugehörigen Bücher können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (res == DialogResult.Yes)
@@ -143,7 +143,54 @@ namespace UniBibliothek
 
         private void btnModifyEntry_Click(object sender, EventArgs e)
         {
+            String author = "";
+            int age = 0;
+            bool isValid = true;
+            bool hasChanged = false;
 
+            try
+            {
+                author = txtModifyName.Text.Trim();
+                Int32.TryParse(txtModfiyAge.Text, out age);
+            }
+            catch (Exception exception) { }
+
+            if (author.Length < 2) isValid = false;
+            if (age < 1) isValid = false;
+
+            if (age != selected.AuthorAge) hasChanged = true;
+            if (author != selected.AuthorName) hasChanged = true;
+
+            if (hasChanged)
+            {
+                if (isValid)
+                {
+                    Author a = new Author()
+                    {
+                        AuthorId = selected.AuthorId,
+                        AuthorName = author,
+                        AuthorAge = age
+                    };
+
+                    if (AuthorRepository.Instance.updateAutorByAuthor(a))
+                    {
+                        MessageBox.Show("Der Autor \"" + author + "\" wurde erfolgreich bearbeitet", "Geändert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Beim Bearbeiten trat ein Fehler auf", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    loadAuthors();
+                }
+                else
+                {
+                    MessageBox.Show("Überprüfen sie ihre Daten", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Es wurden keine Änderungen gemacht", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
-}
+ }

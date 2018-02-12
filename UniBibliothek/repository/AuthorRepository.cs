@@ -78,30 +78,26 @@ namespace UniBibliothek.repository
             bookToDelete.ForEach(item => context.Books.Remove(item));
             context.SaveChanges();
 
-            //List<BookExemplar> allBooks = context.BookExemplars
-            //    .Include(b => b.Book)
-            //    .Include(a => a.Book.Authors)
-            //    .Where(a => a.Book.Authors.)
-            //    .ToList();
-
-            //if (allBooks != null) return false;
-
-            //List<Book> toDelete = new List<Book>();
-
-            //allBooks.ForEach(item =>
-            //{
-            //    if (item.Book.Authors.ToList().Count > 1 && deleteWhereAuthorisCoauthor)
-            //    { context.BookExemplars.Remove(item); toDelete.Add(item.Book); }
-
-            //    if (item.Book.Authors.ToList().Count == 1)
-            //    { context.BookExemplars.Remove(item); toDelete.Add(item.Book); }
-            //});
-            //context.SaveChanges();
-
-            //toDelete.ForEach(item => context.Books.Remove(item));
-            //context.SaveChanges();
-
             context.Authors.Remove(author);
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public bool updateAutorByAuthor(Author author)
+        {
+            Author existing = context.Authors.FirstOrDefault(item => item.AuthorId == author.AuthorId);
+            Author changed = context.Authors.FirstOrDefault(item => item.AuthorName == author.AuthorName);
+
+            if (existing == null) return false;
+            if (author.AuthorName != existing.AuthorName)
+            {
+                if (changed != null) return false;
+            }
+
+            existing.AuthorName = author.AuthorName;
+            existing.AuthorAge = author.AuthorAge;
+
             context.SaveChanges();
 
             return true;
