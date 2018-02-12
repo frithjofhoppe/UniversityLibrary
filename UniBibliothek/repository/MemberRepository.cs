@@ -31,6 +31,14 @@ namespace UniBibliothek.repository
                 .ToList();
         }
 
+        public List<Member> findAllMembersWithLending()
+        {
+            return context.Members
+                .Include(l => l.Lednings)
+                .Where(l => l.Lednings.Count > 0)
+                .ToList();
+        }
+
         public bool createMember(Member member)
         {
             Member existing = context.Members.FirstOrDefault(item => item.MemberFirstname.ToUpper() == member.MemberFirstname.ToUpper() && item.MemberSurname.ToUpper() == member.MemberSurname.ToUpper());

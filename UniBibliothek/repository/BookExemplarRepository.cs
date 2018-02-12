@@ -100,6 +100,7 @@ namespace UniBibliothek.repository
 
         public List<BookExemplar> findAllBookExemplars()
         {
+            context = new LibraryContext();
             return context.BookExemplars
                 .Include(b => b.Book)
                 .Include(bl => bl.BookLocation)

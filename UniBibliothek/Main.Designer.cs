@@ -144,7 +144,7 @@
             // 
             this.abfragenToolStripMenuItem.Name = "abfragenToolStripMenuItem";
             this.abfragenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.abfragenToolStripMenuItem.Text = "Abfragen";
+            this.abfragenToolStripMenuItem.Text = "Bearbeiten";
             this.abfragenToolStripMenuItem.Click += new System.EventHandler(this.abfragenToolStripMenuItem_Click);
             // 
             // bearbeitenToolStripMenuItem1

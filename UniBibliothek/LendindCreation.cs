@@ -124,7 +124,7 @@ namespace UniBibliothek
 
                 if (LendingRepository.Instance.createLendingByLending(lending))
                 {
-                    MessageBox.Show("Folgene Daten wurden erfasse\n\rBuch: " 
+                    MessageBox.Show("Folgene Daten wurden erfasst\n\rBuch: " 
                         + this.bookExemplar.Book.BookName + "\n\rExemplar: " 
                         + this.bookExemplar.BookExemplarId.ToString() + "\n\rMitglied: "
                         + this.member.MemberFirstname + " " + this.member.MemberSurname

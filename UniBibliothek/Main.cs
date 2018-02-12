@@ -76,15 +76,16 @@ namespace UniBibliothek
 
         }
 
-        private void abfragenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void bearbeitenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            LendindCreation lendingModifying = new LendindCreation();
-            lendingModifying.Show();
+            LendindCreation lendindCreation = new LendindCreation();
+            lendindCreation.Show();
+        }
+
+        private void abfragenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LendingModify lendingModify = new LendingModify();
+            lendingModify.Show();
         }
     }
 }

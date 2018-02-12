@@ -35,3 +35,4 @@ E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliot
 E:\Privat\Informatik\Entwicklung\Projekte\UniBibliothek\UniBibliothek\UniBibliothek\obj\Debug\UniBibliothek.MemberForm.resources
 C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.MemberForm.resources
 C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.LendindCreation.resources
+C:\Users\U80840350\source\repos\UniversityLibrary\UniBibliothek\obj\Debug\UniBibliothek.LendingModify.resources

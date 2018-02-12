@@ -114,7 +114,7 @@ namespace UniBibliothek
         {
             if (selected != null && selected.AuthorId > 0)
             {
-                DialogResult res = MessageBox.Show("Wollen sie den Autor \"" + selected.AuthorName + "\" wirklich löschen?\n\rAlle zugehörigen Bücher können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult res = MessageBox.Show("Wollen sie den Autor \"" + selected.AuthorName + "\" wirklich löschen?\n\rAlle zugehörigen Bücher können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes)
                 {
                     DialogResult deleteall = MessageBox.Show("Sollen Bücher bei denen der Autor Couator ist gelöscht werden?", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);

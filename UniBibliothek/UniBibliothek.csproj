@@ -84,6 +84,12 @@
     <Compile Include="LendindCreation.Designer.cs">
       <DependentUpon>LendindCreation.cs</DependentUpon>
     </Compile>
+    <Compile Include="LendingModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LendingModify.Designer.cs">
+      <DependentUpon>LendingModify.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LendindCreation.resx">
       <DependentUpon>LendindCreation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LendingModify.resx">
+      <DependentUpon>LendingModify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -307,7 +307,7 @@ namespace UniBibliothek
         private void btnModifyDelete_Click(object sender, EventArgs e)
         {
             if (selected.Book != null) {
-                DialogResult res = MessageBox.Show("Wollen sie das Buch \"" + selected.Book.BookName + "\" wirklich löschen?\n\rDie Daten können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult res = MessageBox.Show("Wollen sie das Buch \"" + selected.Book.BookName + "\" wirklich löschen?\n\rDie Daten können nicht wiederhergestellt werden", "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(res == DialogResult.Yes)
                 {
                     if (BookExemplarRepository.Instance.deleteExemplarAndBookByBookExemplarId(selected.BookExemplarId))

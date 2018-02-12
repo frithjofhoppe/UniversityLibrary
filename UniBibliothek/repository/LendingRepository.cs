@@ -31,7 +31,24 @@ namespace UniBibliothek.repository
             return context.Lendings
                 .Include(m => m.Member)
                 .Include(ex => ex.BookExemplar)
+                .Include(b => b.BookExemplar.Book)
                 .ToList();
+        }
+
+        public bool deleteLendingByLendingId(int id)
+        {
+            Lending existing = context.Lendings.FirstOrDefault(item => item.LendingId == id);
+            if (existing == null) return false;
+
+            context.Lendings.Remove(existing);
+            context.SaveChanges();
+
+            return true;
+        }
+
+        public bool updateLendingByLending(Lending lending)
+        {
+            Lending existing = context.Lendings.FirstOrDefault(item => item.)
         }
 
         public bool createLendingByLending(Lending lending)
