@@ -64,6 +64,12 @@
     <Compile Include="BookForm.Designer.cs">
       <DependentUpon>BookForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DbCreateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DbCreateForm.Designer.cs">
+      <DependentUpon>DbCreateForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="entity\Author.cs" />
     <Compile Include="entity\Book.cs" />
     <Compile Include="entity\BookExemplar.cs" />
@@ -121,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="BookForm.resx">
       <DependentUpon>BookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DbCreateForm.resx">
+      <DependentUpon>DbCreateForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenreForm.resx">
       <DependentUpon>GenreForm.cs</DependentUpon>

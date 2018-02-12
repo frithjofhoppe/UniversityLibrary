@@ -34,7 +34,8 @@ namespace UniBibliothek
         private void presentMember()
         {
             listBoxMembers.Items.Clear();
-            lendings.ForEach(item => {
+            lendings.ForEach(item =>
+            {
                 listBoxMembers.Items.Add(item.Member.MemberFirstname + "/" + item.Member.MemberSurname);
             });
         }
@@ -68,7 +69,7 @@ namespace UniBibliothek
                 temp.ForEach(l => bookExemplars.Add(l.BookExemplar));
                 bookExemplars.ForEach(item => listBoxExemplars.Items.Add(item.Book.BookName + "-" + item.BookExemplarId));
             }
-            else if(listBoxMembers.Items.Count > 0)
+            else if (listBoxMembers.Items.Count > 0)
             {
                 listBoxMembers.SelectedIndex = 0;
             }
@@ -77,18 +78,19 @@ namespace UniBibliothek
         private void listBoxExemplars_SelectedValueChanged(object sender, EventArgs e)
         {
             var selection = listBoxExemplars.SelectedItem;
-            if(selection != null)
+            if (selection != null)
             {
                 string[] content = selection.ToString().Split('-');
                 Lending found = lendings.Find(item => item.BookExemplar.BookExemplarId == Int32.Parse(content[1]));
-                if(found != null)
+                if (found != null)
                 {
                     lending = found;
                     bookExemplar = found.BookExemplar;
                     dateTimePickerFrom.Value = found.LendingDate;
                     dateTimePickerTo.Value = found.LendingReturn;
                 }
-            }else if(listBoxExemplars.Items.Count > 0)
+            }
+            else if (listBoxExemplars.Items.Count > 0)
             {
                 listBoxExemplars.SelectedIndex = 0;
             }
@@ -101,7 +103,7 @@ namespace UniBibliothek
                 DialogResult res = MessageBox.Show("Wollen sie die Ausleihe entfernen?\n\n\r" + member.MemberFirstname + " " + member.MemberSurname
                     + " <==> " + lending.BookExemplar.Book.BookName + "-" + lending.BookExemplar.BookExemplarId, "Löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if(res == DialogResult.Yes)
+                if (res == DialogResult.Yes)
                 {
                     if (LendingRepository.Instance.deleteLendingByLendingId(lending.LendingId))
                     {
@@ -121,7 +123,35 @@ namespace UniBibliothek
         {
             if (lending.BookExemplar != null)
             {
-                Lend
+                DateTime from = dateTimePickerFrom.Value;
+                DateTime to = dateTimePickerTo.Value;
+                bool hasChanged = false;
+
+                Lending l = new Lending()
+                {
+                    LendingId = lending.LendingId,
+                    LendingDate = from,
+                    LendingReturn = to
+                };
+
+                if (from != lending.LendingDate) hasChanged = true;
+                if (to != lending.LendingDate) hasChanged = true;
+
+                if (hasChanged)
+                {
+                    if (LendingRepository.Instance.updateLendingByLending(l))
+                    {
+                        MessageBox.Show("Die Ausleihe wurde erfolgreich geändert\n\n\r" + member.MemberFirstname + " " + member.MemberSurname
+                         + " <==> " + lending.BookExemplar.Book.BookName + "-" + lending.BookExemplar.BookExemplarId, "Löschen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Es trat ein Fehler bei der Verarbeitung auf", "Felher", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    loadLending();
+                    loadMembers();
+                }
             }
+        }
     }
 }

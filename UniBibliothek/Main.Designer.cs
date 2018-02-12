@@ -35,12 +35,13 @@
             this.entfernenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.abrufeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mitgliedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.ausleiheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.abfragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bearbeitenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.abfragenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -74,39 +75,76 @@
             // hinzufügenToolStripMenuItem
             // 
             this.hinzufügenToolStripMenuItem.Name = "hinzufügenToolStripMenuItem";
-            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hinzufügenToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.hinzufügenToolStripMenuItem.Text = "Genre";
             this.hinzufügenToolStripMenuItem.Click += new System.EventHandler(this.hinzufügenToolStripMenuItem_Click);
             // 
             // entfernenToolStripMenuItem
             // 
             this.entfernenToolStripMenuItem.Name = "entfernenToolStripMenuItem";
-            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.entfernenToolStripMenuItem.Text = "Autor";
             this.entfernenToolStripMenuItem.Click += new System.EventHandler(this.entfernenToolStripMenuItem_Click);
             // 
             // abrufeToolStripMenuItem
             // 
             this.abrufeToolStripMenuItem.Name = "abrufeToolStripMenuItem";
-            this.abrufeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.abrufeToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.abrufeToolStripMenuItem.Text = "Buch";
             this.abrufeToolStripMenuItem.Click += new System.EventHandler(this.abrufeToolStripMenuItem_Click);
             // 
             // mitgliedToolStripMenuItem
             // 
             this.mitgliedToolStripMenuItem.Name = "mitgliedToolStripMenuItem";
-            this.mitgliedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mitgliedToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.mitgliedToolStripMenuItem.Text = "Mitglied";
             this.mitgliedToolStripMenuItem.Click += new System.EventHandler(this.mitgliedToolStripMenuItem_Click);
+            // 
+            // ausleiheToolStripMenuItem
+            // 
+            this.ausleiheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bearbeitenToolStripMenuItem1,
+            this.abfragenToolStripMenuItem});
+            this.ausleiheToolStripMenuItem.Name = "ausleiheToolStripMenuItem";
+            this.ausleiheToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.ausleiheToolStripMenuItem.Text = "Ausleihe";
+            // 
+            // bearbeitenToolStripMenuItem1
+            // 
+            this.bearbeitenToolStripMenuItem1.Name = "bearbeitenToolStripMenuItem1";
+            this.bearbeitenToolStripMenuItem1.Size = new System.Drawing.Size(130, 22);
+            this.bearbeitenToolStripMenuItem1.Text = "Erstellen";
+            this.bearbeitenToolStripMenuItem1.Click += new System.EventHandler(this.bearbeitenToolStripMenuItem1_Click);
+            // 
+            // abfragenToolStripMenuItem
+            // 
+            this.abfragenToolStripMenuItem.Name = "abfragenToolStripMenuItem";
+            this.abfragenToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.abfragenToolStripMenuItem.Text = "Bearbeiten";
+            this.abfragenToolStripMenuItem.Click += new System.EventHandler(this.abfragenToolStripMenuItem_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(0, 27);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(218, 323);
             this.panel1.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(162, 45);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Bibliothek";
             // 
             // pictureBox2
             // 
@@ -118,41 +156,15 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
-            // label1
+            // button1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(26, 141);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 45);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Bibliothek";
-            // 
-            // ausleiheToolStripMenuItem
-            // 
-            this.ausleiheToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bearbeitenToolStripMenuItem1,
-            this.abfragenToolStripMenuItem});
-            this.ausleiheToolStripMenuItem.Name = "ausleiheToolStripMenuItem";
-            this.ausleiheToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ausleiheToolStripMenuItem.Text = "Ausleihe";
-            // 
-            // abfragenToolStripMenuItem
-            // 
-            this.abfragenToolStripMenuItem.Name = "abfragenToolStripMenuItem";
-            this.abfragenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.abfragenToolStripMenuItem.Text = "Bearbeiten";
-            this.abfragenToolStripMenuItem.Click += new System.EventHandler(this.abfragenToolStripMenuItem_Click);
-            // 
-            // bearbeitenToolStripMenuItem1
-            // 
-            this.bearbeitenToolStripMenuItem1.Name = "bearbeitenToolStripMenuItem1";
-            this.bearbeitenToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.bearbeitenToolStripMenuItem1.Text = "Erstellen";
-            this.bearbeitenToolStripMenuItem1.Click += new System.EventHandler(this.bearbeitenToolStripMenuItem1_Click);
+            this.button1.Location = new System.Drawing.Point(93, 237);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Main
             // 
@@ -164,11 +176,12 @@
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
+            this.Shown += new System.EventHandler(this.Main_Shown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -193,6 +206,7 @@
         private System.Windows.Forms.ToolStripMenuItem ausleiheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem abfragenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bearbeitenToolStripMenuItem1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

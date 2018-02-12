@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UniBibliothek.entity;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace UniBibliothek
 {
     public partial class Main : Form
     {
+        private BackgroundWorker bw = new BackgroundWorker();
+        private DbCreateForm dbCreateForm = new DbCreateForm();
+
         public Main()
         {
             InitializeComponent();
@@ -26,32 +30,46 @@ namespace UniBibliothek
 
         private void abrufeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             BookForm bookForm = new BookForm();
             bookForm.Show();
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            using(var con = new LibraryContext())
+            if ((e.Cancelled == true))
             {
-                Member m = new Member()
-                {
-                    MemberFirstname = "Max",
-                    MemberSurname = "Mustermann",
-                    MemberFaculty = "PHBern",
-                    MemberSemester = 2
-                };
+                MessageBox.Show("Prozess wurde abgrebrochen", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-                con.Members.Add(m);
-                con.SaveChanges();
+            else if (!(e.Error == null))
+            {
+                MessageBox.Show("Prozess wurde abgrebrochen\n\r" + e.Error.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            else
+            {
+                dbCreateForm.wait();
+                dbCreateForm.Close();
             }
         }
+
+
+        private void bw_createDB(object sender, DoWorkEventArgs e)
+        {
+            LibraryContext context = new LibraryContext();
+            context.Database.CreateIfNotExists();
+        }
+
+        private void bw_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+        }
+
 
         private void hinzufügenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -86,6 +104,27 @@ namespace UniBibliothek
         {
             LendingModify lendingModify = new LendingModify();
             lendingModify.Show();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            bw.WorkerReportsProgress = true;
+            bw.WorkerSupportsCancellation = true;
+            bw.DoWork += new DoWorkEventHandler(bw_createDB);
+            bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
+            bw.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
+
+            dbCreateForm.Show();
+
+            if (bw.IsBusy != true)
+            {
+                bw.RunWorkerAsync();
+            }
         }
     }
 }

@@ -48,7 +48,14 @@ namespace UniBibliothek.repository
 
         public bool updateLendingByLending(Lending lending)
         {
-            Lending existing = context.Lendings.FirstOrDefault(item => item.)
+            Lending existing = context.Lendings.FirstOrDefault(item => item.LendingId == lending.LendingId);
+            if (existing == null) return false;
+
+            existing.LendingDate = lending.LendingDate;
+            existing.LendingReturn = lending.LendingReturn;
+            context.SaveChanges();
+
+            return true;
         }
 
         public bool createLendingByLending(Lending lending)
