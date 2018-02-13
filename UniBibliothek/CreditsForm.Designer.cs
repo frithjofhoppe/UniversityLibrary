@@ -114,9 +114,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(135, 25);
+            this.label3.Size = new System.Drawing.Size(147, 25);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Frithjof Hope";
+            this.label3.Text = "Frithjof Hoppe";
             // 
             // label4
             // 

@@ -43,8 +43,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.standortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.creditsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.copyrightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -169,26 +167,10 @@
             // 
             // infoToolStripMenuItem
             // 
-            this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.creditsToolStripMenuItem,
-            this.copyrightToolStripMenuItem});
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.infoToolStripMenuItem.Text = "Sonstiges";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
-            // 
-            // creditsToolStripMenuItem
-            // 
-            this.creditsToolStripMenuItem.Name = "creditsToolStripMenuItem";
-            this.creditsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.creditsToolStripMenuItem.Text = "Credits";
-            // 
-            // copyrightToolStripMenuItem
-            // 
-            this.copyrightToolStripMenuItem.Name = "copyrightToolStripMenuItem";
-            this.copyrightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copyrightToolStripMenuItem.Text = "Copyright";
-            this.copyrightToolStripMenuItem.Click += new System.EventHandler(this.copyrightToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -232,8 +214,6 @@
         private System.Windows.Forms.ToolStripMenuItem bearbeitenToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem standortToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem creditsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem copyrightToolStripMenuItem;
     }
 }
 
